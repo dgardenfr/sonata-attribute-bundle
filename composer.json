@@ -1,0 +1,8 @@
+{
+    "name": "dgarden/sonata-attribute-bundle",
+    "description": "Control Sonata Admin Bundle via Attributes",
+    "type": "symfony-bundle",
+    "require": {
+        "sonata-project/admin-bundle": "^4"
+    }
+}

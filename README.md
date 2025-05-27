@@ -10,7 +10,7 @@ Installation
 To install the bundle in your Symfony project, just execute :
 
 ```shell
-composer require neimheadh/sonata-admin-attribute-bundle
+composer require dgarden/sonata-admin-attribute-bundle
 ```
 
 And if it is not done automatically with flex, add the following line to your `bundles.php` file:
@@ -20,7 +20,7 @@ And if it is not done automatically with flex, add the following line to your `b
 
 return [
     // ...
-    Neimheadh\SonataAdminAttributeBundle\DigitalGardenSonataAttributeBundle::class => ['all' => true],
+    DigitalGarden\SonataAttributeBundle\DigitalGardenSonataAttributeBundle::class => ['all' => true],
 ]
 ```
 
@@ -36,8 +36,8 @@ Example:
 namespace App\Entity\Bank;
 
 // ...
-use Neimheadh\SonataAdminAttributeBundle\Attribute\Admin;
-use Neimheadh\SonataAdminAttributeBundle\Attribute\AdminAttribute;
+use DigitalGarden\SonataAttributeBundle\Attribute\Admin;
+use DigitalGarden\SonataAttributeBundle\Attribute\AdminAttribute;
 
 #[ApiResource]
 #[ORM\Entity]
@@ -72,7 +72,7 @@ Here the `Admin` Attribute informations:
 ```php
 <?php
 
-namespace Neimheadh\SonataAdminAttributeBundle\Attribute;
+namespace DigitalGarden\SonataAttributeBundle\Attribute;
 
 use Attribute;
 
@@ -122,40 +122,40 @@ How does it work?
 The bundle is pretty simple. It works in two steps :
  * Parsing all classes creating a service with a `sonata.admin` tag for each class found
      with an `Admin` attribute, adding the different views fields to the tag. 
-     (see: `Neimheadh\SonataAdminAttributeBundle\DependencyInjection\CompilerPass\AdminCreationCompilerPass`).
+     (see: `DigitalGarden\SonataAttributeBundle\DependencyInjection\CompilerPass\AdminCreationCompilerPass`).
  * Parsing all `sonata.admin` services to replace default field list builders with wrapper
-    having the list of set up fields.
-   (see: `Neimheadh\SonataAdminAttributeBundle\DependencyInjection\CompilerPass\AdminFieldAddCompilerPass`)
+    having the list of setup fields.
+   (see: `DigitalGarden\SonataAttributeBundle\DependencyInjection\CompilerPass\AdminFieldAddCompilerPass`)
 
 So, with our previous example, we'll have the following services add to the container:
 
 ```shell
-$ bin/console debug:container | grep neimheadh.sonata_admin | grep bank
+$ bin/console debug:container | grep dgarden.sonata_admin | grep bank
 
  // To search for a specific service, re-run this command with a search term. (e.g. debug:container log)                
 
-  neimheadh.sonata_admin.app_entity_bank_bank.datagrid_builder                             Neimheadh\SonataAdminAttributeBundle\Builder\DatagridBuilder                                             
-  neimheadh.sonata_admin.app_entity_bank_bank.datagrid_builder.field_description.name      Sonata\DoctrineORMAdminBundle\FieldDescription\FieldDescription                                          
-  neimheadh.sonata_admin.app_entity_bank_bank.form_builder                                 Neimheadh\SonataAdminAttributeBundle\Builder\FormContractor                                              
-  neimheadh.sonata_admin.app_entity_bank_bank.form_builder.field_description.name          Sonata\DoctrineORMAdminBundle\FieldDescription\FieldDescription                                          
-  neimheadh.sonata_admin.app_entity_bank_bank.list_builder                                 Neimheadh\SonataAdminAttributeBundle\Builder\ListBuilder                                                 
-  neimheadh.sonata_admin.app_entity_bank_bank.list_builder.field_description._actions      Sonata\DoctrineORMAdminBundle\FieldDescription\FieldDescription                                          
-  neimheadh.sonata_admin.app_entity_bank_bank.list_builder.field_description._batch        Sonata\DoctrineORMAdminBundle\FieldDescription\FieldDescription                                          
-  neimheadh.sonata_admin.app_entity_bank_bank.list_builder.field_description.name          Sonata\DoctrineORMAdminBundle\FieldDescription\FieldDescription                                          
-  neimheadh.sonata_admin.app_entity_bank_bank.show_builder                                 Neimheadh\SonataAdminAttributeBundle\Builder\ShowBuilder                                                 
-  neimheadh.sonata_admin.app_entity_bank_bank.show_builder.field_description.name          Sonata\DoctrineORMAdminBundle\FieldDescription\FieldDescription                                          
-  neimheadh.sonata_admin.app_entity_bank_account                                            Neimheadh\SonataAdminAttributeBundle\Admin\DefaultAdmin                                                  
-  neimheadh.sonata_admin.app_entity_bank_account.template_registry                          Sonata\AdminBundle\Templating\MutableTemplateRegistry                                                    
-  neimheadh.sonata_admin.app_entity_bank_bank                                               Neimheadh\SonataAdminAttributeBundle\Admin\DefaultAdmin                                                  
-  neimheadh.sonata_admin.app_entity_bank_bank.template_registry                             Sonata\AdminBundle\Templating\MutableTemplateRegistry    
+  dgarden.sonata_admin.app_entity_bank_bank.datagrid_builder                             DigitalGarden\SonataAttributeBundle\Builder\DatagridBuilder                                             
+  dgarden.sonata_admin.app_entity_bank_bank.datagrid_builder.field_description.name      Sonata\DoctrineORMAdminBundle\FieldDescription\FieldDescription                                          
+  dgarden.sonata_admin.app_entity_bank_bank.form_builder                                 DigitalGarden\SonataAttributeBundle\Builder\FormContractor                                              
+  dgarden.sonata_admin.app_entity_bank_bank.form_builder.field_description.name          Sonata\DoctrineORMAdminBundle\FieldDescription\FieldDescription                                          
+  dgarden.sonata_admin.app_entity_bank_bank.list_builder                                 DigitalGarden\SonataAttributeBundle\Builder\ListBuilder                                                 
+  dgarden.sonata_admin.app_entity_bank_bank.list_builder.field_description._actions      Sonata\DoctrineORMAdminBundle\FieldDescription\FieldDescription                                          
+  dgarden.sonata_admin.app_entity_bank_bank.list_builder.field_description._batch        Sonata\DoctrineORMAdminBundle\FieldDescription\FieldDescription                                          
+  dgarden.sonata_admin.app_entity_bank_bank.list_builder.field_description.name          Sonata\DoctrineORMAdminBundle\FieldDescription\FieldDescription                                          
+  dgarden.sonata_admin.app_entity_bank_bank.show_builder                                 DigitalGarden\SonataAttributeBundle\Builder\ShowBuilder                                                 
+  dgarden.sonata_admin.app_entity_bank_bank.show_builder.field_description.name          Sonata\DoctrineORMAdminBundle\FieldDescription\FieldDescription                                          
+  dgarden.sonata_admin.app_entity_bank_account                                           DigitalGarden\SonataAttributeBundle\Admin\DefaultAdmin                                                  
+  dgarden.sonata_admin.app_entity_bank_account.template_registry                         Sonata\AdminBundle\Templating\MutableTemplateRegistry                                                    
+  dgarden.sonata_admin.app_entity_bank_bank                                              DigitalGarden\SonataAttributeBundle\Admin\DefaultAdmin                                                  
+  dgarden.sonata_admin.app_entity_bank_bank.template_registry                            Sonata\AdminBundle\Templating\MutableTemplateRegistry    
 ```
 
-As you can see, a `neimheadh.sonata_admin.app_entity_bank_bank` `DefaultAdmin` service is created, with a galaxy of other
+As you can see, a `dgarden.sonata_admin.app_entity_bank_bank` `DefaultAdmin` service is created, with a galaxy of other
 services building default field list for different views:
 
 ```json
 {
-    "class": "Neimheadh\\SonataAdminAttributeBundle\\Admin\\DefaultAdmin",
+    "class": "dgarden.\SonataAdminAttributeBundle\\Admin\\DefaultAdmin",
     "public": false,
     "synthetic": false,
     "lazy": false,
@@ -259,7 +259,7 @@ services building default field list for different views:
 If the `Admin` attribute had a modelClass set, then the admin service would have the class target by the attribute, with
 the specified model class.
 
-**neimheadh.sonata_admin.app_entity_bank_bank.*_builder** are also created to decorate the default sonata field description
+**dgarden.sonata_admin.app_entity_bank_bank.*_builder** are also created to decorate the default sonata field description
 builders in order to add by defaults the configured fields, so you can still use `configureFields...` sonata inheritacne
 to build your views. Take care anyway the `DefaultAdmin` class override `configureFormFields` and `configureShowFields`
 in order to create a default tab:

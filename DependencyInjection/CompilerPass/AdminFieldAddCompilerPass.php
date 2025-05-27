@@ -2,11 +2,11 @@
 
 namespace DigitalGarden\SonataAttributeBundle\DependencyInjection\CompilerPass;
 
-use Neimheadh\SonataAdminAttributeBundle\Attribute\AdminAttribute;
-use Neimheadh\SonataAdminAttributeBundle\Builder\DatagridBuilder;
-use Neimheadh\SonataAdminAttributeBundle\Builder\FormContractor;
-use Neimheadh\SonataAdminAttributeBundle\Builder\ListBuilder;
-use Neimheadh\SonataAdminAttributeBundle\Builder\ShowBuilder;
+use DigitalGarden\SonataAttributeBundle\Attribute\AdminAttribute;
+use DigitalGarden\SonataAttributeBundle\Builder\DatagridBuilder;
+use DigitalGarden\SonataAttributeBundle\Builder\FormContractor;
+use DigitalGarden\SonataAttributeBundle\Builder\ListBuilder;
+use DigitalGarden\SonataAttributeBundle\Builder\ShowBuilder;
 use ReflectionClass;
 use ReflectionException;
 use RuntimeException;
@@ -105,7 +105,7 @@ class AdminFieldAddCompilerPass implements CompilerPassInterface
         $builderClass = new ReflectionClass($builderClass);
         $modelClass = $tag['model_class'];
         $modelName = explode('\\', $modelClass);
-        $builderId = 'neimheadh.sonata_admin.' . strtolower(implode('_', $modelName));
+        $builderId = 'dgarden.sonata_admin.' . strtolower(implode('_', $modelName));
 
         /** Guess default list builder setter & service id */
         if ($builderClass->implementsInterface(DatagridBuilderInterface::class)) {

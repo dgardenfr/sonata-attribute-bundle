@@ -2,9 +2,9 @@
 
 namespace DigitalGarden\SonataAttributeBundle\DependencyInjection\CompilerPass;
 
-use Neimheadh\SonataAdminAttributeBundle\Admin\DefaultAdmin;
-use Neimheadh\SonataAdminAttributeBundle\Attribute\Admin;
-use Neimheadh\SonataAdminAttributeBundle\Attribute\AdminAttribute;
+use DigitalGarden\SonataAttributeBundle\Admin\DefaultAdmin;
+use DigitalGarden\SonataAttributeBundle\Attribute\Admin;
+use DigitalGarden\SonataAttributeBundle\Attribute\AdminAttribute;
 use ReflectionClass;
 use ReflectionException;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
@@ -125,7 +125,7 @@ readonly class AdminCreationCompilerPass implements CompilerPassInterface
     private function guessServiceName(ReflectionClass $class): string
     {
         $className = explode('\\', $class->getName());
-        return 'neimheadh.sonata_admin.' . strtolower(implode('_', $className));
+        return 'dgarden.sonata_admin.' . strtolower(implode('_', $className));
     }
 
     /**
