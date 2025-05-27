@@ -155,7 +155,7 @@ services building default field list for different views:
 
 ```json
 {
-    "class": "dgarden.\SonataAdminAttributeBundle\\Admin\\DefaultAdmin",
+    "class": "DigitalGarden\\SonataAdminAttributeBundle\\Admin\\DefaultAdmin",
     "public": false,
     "synthetic": false,
     "lazy": false,
